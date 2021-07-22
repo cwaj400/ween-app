@@ -1,0 +1,91 @@
+<div [hidden]="!formSubmitted" style="margin-top: 10%" class="container">
+  <h1 class="title is-1 " >Thanks for registering! You'll hear back soon through email.</h1>
+</div>
+
+<div class="container" [hidden]="formSubmitted">
+
+  <h1 class="title is-1" style="margin-top: 10%">Register for Updates</h1>
+  <form  #registerForm="ngForm">
+    <div class="field">
+
+
+      <label class="label">Name</label>
+      <div class="control">
+        <input [(ngModel)]="model.name" id="fullname" name="name" class="input fullname-input" type="text" required
+               placeholder="Full name"
+               #name="ngModel">
+      </div>
+      <div [hidden]="name.valid || name.pristine"
+           class="alert alert-danger has-text-danger">
+        Name is required
+      </div>
+    </div>
+
+    <div class="field">
+      <label class="label">Username</label>
+      <div class="control has-icons-left has-icons-right">
+        <input [(ngModel)]="model.username" name="username" #username="ngModel" id="username" class="input username-input is-success"
+               required type="text" placeholder="Any username will do!">
+        <span class="icon is-small is-left">
+      <fa-icon [icon]="envelopeIcon"></fa-icon>
+    </span>
+        <span class="icon is-small is-right">
+      <fa-icon [icon]="exclamation"></fa-icon>
+    </span>
+      </div>
+      <div [hidden]="username.valid || username.pristine"
+           class="alert alert-danger has-text-danger">
+        Username is required
+      </div>
+      <p class="help is-success" *ngIf="error">This username is not available</p>
+    </div>
+
+
+    <div class="field">
+      <label class="label">Email</label>
+      <div class="control has-icons-left has-icons-right">
+        <input [(ngModel)]="model.email" name="email" #email="ngModel" id="email" class="input email-input is-danger" type="email"
+               required placeholder="Email goes here">
+
+        <span class="icon is-small is-left">
+      <fa-icon [icon]="envelopeIcon"></fa-icon>
+    </span>
+        <span class="icon is-small is-right">
+      <fa-icon [icon]="exclamation"></fa-icon>
+    </span>
+        <div [hidden]="email.valid || email.pristine"
+             class="alert alert-danger has-text-danger">
+          Email is required
+        </div>
+      </div>
+      <h4 class="help is-danger is-large" *ngIf="invalidEmail">This email is invalid. Please try again</h4>
+    </div>
+
+
+    <div class="field" style="margin-bottom: 40px;">
+      <div class="control">
+        <label class="checkbox">
+          <input type="checkbox">
+          I agree to the <a href="#">terms and conditions</a>
+        </label>
+      </div>
+    </div>
+
+    <div class="field is-grouped">
+      <div class="control">
+        <button class="button is-link" (click)="register();" [disabled]="!registerForm.form.valid">Submit</button>
+      </div>
+      <div class="control">
+        <button class="button is-link is-danger" routerLink="home">Cancel</button>
+      </div>
+    </div>
+  </form>
+
+
+</div>
+
+<a>
+  <ul>
+    <li *ngFor="let element of allUsers">{{element.name | json}}, {{element.email | json}}</li>
+  </ul>
+</a>

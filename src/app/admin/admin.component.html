@@ -1,0 +1,36 @@
+<script>
+</script>
+
+<div class="card container is-clipped">
+
+  <div class="columns" *ngFor="let element of users" >
+    <div class="column">
+      <div class="card-content">
+        <div class="media">
+          <div class="media-left">
+            <figure class="image is-48x48">
+              <img src="./assets/BE%20WELL%20WEENA.png" alt="Placeholder image">
+            </figure>
+          </div>
+          <div class="media-content">
+            <ul>
+              <li class="title is-4">{{element.name}}</li>
+              <li class="subtitle is-6">@{{element.username}}</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="content">
+          <button class="is-danger button delete-btn btn" (click)="deleteUser(element.id);">Delete</button>
+          <br>
+          <time datetime="2016-1-1">{{today}}</time>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="notification"  *ngIf="showMe">
+  <button class="delete"></button>
+  Deleted
+</div>
